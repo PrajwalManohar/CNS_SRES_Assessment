@@ -20,58 +20,73 @@ Backend: A Node.js/Express server that executes the Python or R code in isolated
 # Prerequisites
 Before running this application, you need to have the following installed:
 
-# Node.js (v14 or later)
-# npm (v6 or later)
-# Docker
-# Git
+1) Node.js (v14 or later)
+2) npm (v6 or later)
+3) Docker
+4) Git
 
 # Installation
 1) Clone the Repository
 git clone https://github.com/PrajwalManohar/CNS_SRES_Assessment.git
+
 cd visualization-app
 
-2) Backend Setup
+3) Backend Setup
 
 Navigate to the server directory:
+
 cd backend
 
 Install dependencies:
+
 npm install
 
 Make sure Docker is running on your system:
+
 docker --version
 
 3) Frontend Setup
 
 Navigate to the frontend directory:
+
 cd ../frontend
 
 Install dependencies:
+
 npm install
 
 
 4) Running the Application
+   
 A) Start the Backend Server
 
 From the server directory:
+
 npm start
+
 This will start the server on port 5000 by default.
 
 B) Start the Frontend Development Server
 
 From the frontend directory:
+
 npm start
+
 This will start the React development server on port 3000 by default.
 
 Open your browser and navigate to:
+
 http://localhost:3000
 
 
 # How to Use
 
 1) Select a programming language (Python or R) from the dropdown.
+   
 2) Either choose one of the built-in examples or write your own visualization code.
+
 3) Click the "Generate Visualization" button to execute the code.
+
 4) The resulting visualization will be displayed in the visualization panel.
 
 # Supported Libraries
@@ -79,13 +94,17 @@ http://localhost:3000
 1) Python
 
 A) Matplotlib: A comprehensive library for creating static, animated, and interactive visualizations in Python.
+
 B) Plotly: A graphing library for making interactive, publication-quality graphs.
+
 c) Seaborn: A statistical data visualization library based on matplotlib.
 
 2) R
 
 1) ggplot2: A system for declaratively creating graphics, based on The Grammar of Graphics.
+   
 2) plotly: An R package for creating interactive web-based graphics via plotly.js.
+
 3) rgl: Package for 3D visualization using OpenGL.
 
 
@@ -93,28 +112,37 @@ c) Seaborn: A statistical data visualization library based on matplotlib.
 1) Backend
 
 Express.js: Used as the web server framework
+
 Docker: Used to create isolated execution environments for running Python and R code
+
 UUID: Used to generate unique IDs for each visualization
+
 CORS: Enabled to allow cross-origin requests from the frontend
 
 2) Frontend
 
 React: Used as the frontend framework
+
 Axios: Used for making HTTP requests to the backend API
+
 CSS: Custom styling without additional UI libraries to keep it lightweight
 
 3) Design Decisions
    
 A) Security Considerations
+
 The application uses Docker containers to isolate the execution of user-provided code, which helps prevent potential security issues. The code is executed in a sandboxed environment with limited access to the host system.
 
 B) Performance Optimization
+
 Visualizations are stored on the server and served statically, reducing rendering time
 
 C) Extensibility
+
 The architecture is designed to be easily extensible:
-New visualization libraries can be added by updating the Docker images
-Support for additional programming languages can be added by creating new service modules
+i) New visualization libraries can be added by updating the Docker images
+
+ii) Support for additional programming languages can be added by creating new service modules
 
 # Issues Encountered and Solutions
 Issue 1: Docker Permission Issues
