@@ -1,0 +1,103 @@
+# Example 1: Static Visualization with ggplot2
+static_ggplot <- function() {
+  library(ggplot2)
+  
+  # Generate data
+  data <- data.frame(
+    category = c('A', 'B', 'C', 'D', 'E'),
+    value = c(25, 40, 30, 55, 15)
+  )
+  
+  # Create bar chart
+  p <- ggplot(data, aes(x = category, y = value, fill = category)) +
+    geom_bar(stat = "identity", width = 0.6) +
+    labs(title = "Simple Bar Chart",
+         x = "Categories",
+         y = "Values") +
+    theme_minimal() +
+    theme(legend.position = "none")
+  
+  # Save the figure
+  ggsave("/output/static_bar_chart.png", p, width = 8, height = 6, dpi = 300)
+  cat("Static visualization saved to /output/static_bar_chart.png\n")
+}
+
+# Example 2: Interactive Visualization with plotly
+interactive_plotly <- function() {
+  library(plotly)
+  library(dplyr)
+  
+  # Generate data
+  set.seed(42)
+  data <- data.frame(
+    x = rnorm(100),
+    y = rnorm(100),
+    size = runif(100, 5, 15),
+    color = sample(1:5, 100, replace = TRUE)
+  )
+  
+  # Create scatter plot
+  p <- plot_ly(data, x = ~x, y = ~y, size = ~size, color = ~as.factor(color),
+               type = "scatter", mode = "markers",
+               marker = list(opacity = 0.8, line = list(width = 1)),
+               hoverinfo = "text",
+               text = ~paste("X:", round(x, 2), "<br>Y:", round(y, 2)))
+  
+  # Add layout
+  p <- p %>% layout(
+    title = "Interactive Scatter Plot",
+    xaxis = list(title = "X Axis"),
+    yaxis = list(title = "Y Axis"),
+    hovermode = "closest"
+  )
+  
+  # Save as HTML (interactive)
+  htmlwidgets::saveWidget(p, "/output/interactive_scatter.html")
+  cat("Interactive visualization saved to /output/interactive_scatter.html\n")
+}
+
+# Example 3: 3D Visualization with plotly
+three_d_plotly <- function() {
+  library(plotly)
+  
+  # Generate 3D data
+  theta <- seq(0, 2*pi, length.out = 100)
+  z <- seq(0, 2, length.out = 100)
+  r <- z^2 + 1
+  x <- r * sin(theta)
+  y <- r * cos(theta)
+  
+  data <- data.frame(x = x, y = y, z = z)
+  
+  # Create 3D plot
+  p <- plot_ly(data, x = ~x, y = ~y, z = ~z, 
+               type = "scatter3d", mode = "markers",
+               marker = list(
+                 size = 5,
+                 color = ~z,
+                 colorscale = 'Viridis',
+                 opacity = 0.8
+               ))
+  
+  # Add layout
+  p <- p %>% layout(
+    title = "3D Spiral",
+    scene = list(
+      xaxis = list(title = "X Axis"),
+      yaxis = list(title = "Y Axis"),
+      zaxis = list(title = "Z Axis"),
+      camera = list(
+        eye = list(x = 1.5, y = 1.5, z = 0.5)
+      )
+    )
+  )
+  
+  # Save as HTML (interactive)
+  htmlwidgets::saveWidget(p, "/output/3d_spiral.html")
+  cat("3D visualization saved to /output/3d_spiral.html\n")
+}
+
+
+# static_ggplot()
+# interactive_plotly()
+# three_d_plotly()
