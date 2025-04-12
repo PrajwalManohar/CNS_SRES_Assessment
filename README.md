@@ -47,9 +47,9 @@ docker --version
 
 3) Frontend Setup
 
-Navigate to the frontend directory:
+Navigate to the client directory:
 
-cd ../frontend
+cd ../client
 
 Install dependencies:
 
@@ -101,11 +101,11 @@ c) Seaborn: A statistical data visualization library based on matplotlib.
 
 2) R
 
-1) ggplot2: A system for declaratively creating graphics, based on The Grammar of Graphics.
+A) ggplot2: A system for declaratively creating graphics, based on The Grammar of Graphics.
    
-2) plotly: An R package for creating interactive web-based graphics via plotly.js.
+B) plotly: An R package for creating interactive web-based graphics via plotly.js.
 
-3) rgl: Package for 3D visualization using OpenGL.
+C) rgl: Package for 3D visualization using OpenGL.
 
 
 # Technical Implementation Details
