@@ -45,6 +45,8 @@ Make sure Docker is running on your system:
 
 docker --version
 
+./build-docker.sh
+
 3) Frontend Setup
 
 Navigate to the client directory:
